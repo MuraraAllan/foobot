@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<link rel="stylesheet" type="text/css" href="css/world.css">
+<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="css/bootstrap-theme.min.css">
+<script src="js/jquery-3.2.0.min.js"></script>
+<script src="js/foobot.js"></script>
+<script src="js/utils.js"></script>
+<script src="js/world.js"></script>
+
+<script src="js/bootstrap.min.js"></script>
+
+<head>
+   <title>{{title}}</title>
+</head>
+
+<div class="Map" style='position:absolute; width:60%; height:50%; border:2px solid;'>
+	
+{{#generateworld this}}
+      {{this}}
+    {{/generateworld}}
+</div>
+    
+    
+</html>

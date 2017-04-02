@@ -1,0 +1,25 @@
+FOOBOT PROJECT DETAILS --- 01/04/2017 - Allan Felipe Murara
+
+
+
+objeto Robot
+atualmente tratado como html <canvas> object. Recebe suas propriedades para serem obtidas posteriormente como forma de atributos html e são tratas por jquery. 
+{
+   Parametros : 
+   {
+      birth(x,y) - nascimento em determinado XY;
+   }
+
+}
+
+
+objeto Mapa
+Pela capacidade de aninhar objetos é utilizado DIV. Tratado por jquery. Criato por parametro de onde o robo se posicona.
+Gerado por handlebars de acordo com parametros enviados. Cria um objeto filho chamado tile que é responsável pela divisão de posições.
+{
+	Parametros:
+	{
+	   qtd_linhasx() - quantidade de linhas para x;
+	   qtd_linhasy() - quantidade de linhas para y;
+	}
+}
