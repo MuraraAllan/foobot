@@ -1,4 +1,4 @@
-var express = require('express');
+  var express = require('express');
 var path = require('path');
 var app = express();
 var handlebars = require('handlebars');
@@ -11,17 +11,47 @@ var hbs = exphbs.create(
     {
        generateworld: function(obj, opc) 
        {
-          var botx = (typeof opc.fn(obj.robot[0].x) == "string")  ? Math.round(Math.random()*(opc.fn(obj.world[1].x)-1)) : opc.fn(obj.robot[1].x);
-          var boty = (typeof opc.fn(obj.robot[1].y) == "string")  ? Math.round(Math.random()*(opc.fn(obj.world[0].y)-1)) : opc.fn(obj.robot[0].y);
           var ret =  "";
+          var botx = (typeof opc.fn(obj.robot[1].x) == "string")  ? Math.round(Math.random()*(opc.fn(obj.world[1].x)-1)) : opc.fn(obj.robot[1].x);
+          var boty = (typeof opc.fn(obj.robot[0].y) == "string")  ? Math.round(Math.random()*(opc.fn(obj.world[0].y)-1)) : opc.fn(obj.robot[0].y);
+          var qtd_aliens = opc.fn(obj.alien[0].qtd);
+          var aliens_pos = [];
+          for(var i = 0; i< qtd_aliens; i++)
+          {
+            var alienx = (typeof opc.fn(obj.alien[2].x) == "string")  ? Math.round(Math.random()*(opc.fn(obj.world[1].x)-1)) : opc.fn(obj.alien[2].x);
+            var alieny = (typeof opc.fn(obj.alien[1].y) == "string")  ? Math.round(Math.random()*(opc.fn(obj.world[0].y)-1)) : opc.fn(obj.alien[1].y);
+            aliens_pos[i] = { x : alienx, y: alieny };
+          }
+          aliens_pos.sort(function (a, b) 
+          {
+            var o1 = a.y;
+            var o2 = b.y;
+            var p1 = a.x;
+            var p2 = b.x;
+
+            if (o1 < o2) return -1;
+            if (o1 > o2) return 1;
+            if (p1 < p2) return -1;
+            if (p1 > p2) return 1;
+            return 0;
+          })
           for(var y=0; y < opc.fn(obj.world[0].y); y++) 
-     	    {
+          {
             for(var x=0; x < opc.fn(obj.world[1].x); x++) 
             {
-        	      ret += "<div style='height :" + (100/obj.world[0].y) + "%; width:" + (100/obj.world[1].x) + "%;' class='tile'" + " x=" +x+" y= "+y+">";
+               ret += "<div style='height :" + (100/obj.world[0].y) + "%; width:" + (100/obj.world[1].x) + "%;' class='tile'" + " x=" +x+" y= "+y+">";
                if ((boty == y) && (botx == x))
                {
                   ret+= "<canvas id='foobot' class='foobot' style='width:90%; height:90%';>" + boty + "a" +botx+" </canvas>";
+               }
+               if ( aliens_pos.length > 0 )
+               {
+                 if((aliens_pos[0].y == y) && (aliens_pos[0].x == x))
+                 {
+                  
+                     ret+= "<canvas id='alien" + aliens_pos[0].y + "" + aliens_pos[0].x +"' class='alien' style='width:90%; height:90%';>" + aliens_pos[0].y  + "a" + aliens_pos[0].x +" </canvas>";
+                     aliens_pos.shift();
+                 }
                }
                ret+= "</div>";
             }
@@ -53,9 +83,8 @@ app.get('/', function(req, res)
       title:"FOOBOT MONSTRO",
       world: [ {y: "5"}  , { x: "5"} ],
       robot: 
-      [
-        { y: "random"} , { x: "random" }
-      ]
+      [ { y: "random"} , { x: "random" } ],
+      alien: [{qtd:"5"}, { y:"random"} , {x: "random"}]
 
    })
 });
