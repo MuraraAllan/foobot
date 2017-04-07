@@ -25,3 +25,13 @@ function getXY(obj)
 	var currentcoords = {x: $(obj).parent().attr('x'), y : $(obj).parent().attr('y') };
 	return currentcoords;
 }
+
+function sleep(ms,caller)
+{
+	window.setTimeout(function(){ oie('testes') }, ms);
+}
+
+function threadexterna(executa)
+{
+	
+}

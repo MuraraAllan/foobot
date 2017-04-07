@@ -48,8 +48,7 @@ var hbs = exphbs.create(
                {
                  if((aliens_pos[0].y == y) && (aliens_pos[0].x == x))
                  {
-                  
-                     ret+= "<canvas id='alien" + aliens_pos[0].y + "" + aliens_pos[0].x +"' class='alien' style='width:90%; height:90%';>" + aliens_pos[0].y  + "a" + aliens_pos[0].x +" </canvas>";
+                     ret+= "<canvas id='alien" + aliens_pos[0].y + "" + aliens_pos[0].x +"' class='alien' " + " x=" +x+" y= "+y+" style='width:90%; height:90%';>" + aliens_pos[0].y  + "a" + aliens_pos[0].x +" </canvas>";
                      aliens_pos.shift();
                  }
                }

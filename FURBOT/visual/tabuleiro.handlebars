@@ -4,23 +4,24 @@
 <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="css/bootstrap-theme.min.css">
 <script src="js/jquery-3.2.0.min.js"></script>
-<script src="js/foobot.js"></script>
+<script src="js/multithread.js"></script>
+<script src="js/bootstrap.min.js"></script>
 <script src="js/utils.js"></script>
 <script src="js/world.js"></script>
+<script src="js/foobot.js"></script>
 <script src="js/aliens.js"></script>
-
-<script src="js/bootstrap.min.js"></script>
-
 <head>
    <title>{{title}}</title>
 </head>
-
-<div class="Map" style='position:absolute; width:60%; height:50%; border:2px solid;'>
-	
+<body>
+<div class="Map" style='position:absolute; width:60%; height:50%; border:1px solid;'>
 {{#generateworld this}}
       {{this}}
     {{/generateworld}}
 </div>
-    
-    
+<input class="console" style="margin-left:60%; position:absolute; border:1px solid; width:40%; height:50%">
+</input>
+
+
+</body>
 </html>
