@@ -5,7 +5,7 @@
 <link rel="stylesheet" type="text/css" href="css/bootstrap-theme.min.css">
 <link rel="stylesheet" type="text/css" href="css/codemirror.css">
 <script src="js/jquery-3.2.0.min.js"></script>
-<!--<script src="js/multithread.js"></script> temporary commented - no use 09/04/2017 -->
+<script src="js/multithread.js"></script> 
 <script src="js/bootstrap.min.js"></script>
 <script src="js/objects_handler.js"></script>
 <script src="js/utils.js"></script>
@@ -17,12 +17,8 @@ var texteditor;
 $( document ).ready(function() 
 {
 	console.log(1)
-	 texteditor = CodeMirror(editor, {
-	  value: "aaaa",
-  lineNumbers: false,
-  lineWrapping: true,
-	  mode:  "javascript"
-	});
+	 texteditor = CodeMirror(editor, 
+	 {value: "",lineNumbers: true,lineWrapping: true,mode:  "javascript"});
 })
 </script>
 <head>

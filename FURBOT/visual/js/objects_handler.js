@@ -4,6 +4,13 @@ const esquerda = 'esquerda';
 const acima = 'acima';
 const abaixo = 'abaixo';
 const aquimesmo = 'aquimesmo';
+const alien = 'alien';
+var num_threads = 5;
+var MT = new Multithread(num_threads);
+var funcInADifferentThread = MT.process(
+  function(a, b) { return a + b; },
+  function(r) { console.log(r) }
+);
 //instance world object, the mandatory function for object chain. The heritance will occur from this
 function worldobject(x,y,identifier,htmlelement)
 {
@@ -13,7 +20,9 @@ function worldobject(x,y,identifier,htmlelement)
    this.class = identifier;
    this.dom = htmlelement;
    this.processing = 0;
-}
+   this.processingempty = 0;
+   this.processingtype = 0;
+};
 worldobject.prototype.andarDireita = function() 
 { 
    if(this.processing == 1)
@@ -27,8 +36,14 @@ worldobject.prototype.andarDireita = function()
    }
    this.processing = 1;
    var _this = this; 
-   setTimeout(function(){ _this.x++; $(_this.dom).appendTo("div[x="+_this.x+"][y="+_this.y+"]"); _this.processing = 0; }, 1000);
+   MT.process(setTimeout(function(){ _this.x++; $(_this.dom).appendTo("div[x="+_this.x+"][y="+_this.y+"]");  _this.clearattribs(); }, 1000));
    return;
+};
+worldobject.prototype.clearattribs = function()
+{
+   this.processing = 0;
+   this.processingtype = 0;
+   this.processingempty = 0;
 }
 worldobject.prototype.andarEsquerda = function() 
 {
@@ -41,8 +56,9 @@ worldobject.prototype.andarEsquerda = function()
    {
       return "Ei amigo, você esta tentando me levar para o fim do mundo???"
    }
-   this.x --;
-   $(this.dom).appendTo("div[x="+this.x+"][y="+this.y+"]");
+   this.processing = 1;
+   var _this = this; 
+   setTimeout(function(){ _this.x--; $(_this.dom).appendTo("div[x="+_this.x+"][y="+_this.y+"]");  _this.clearattribs(); }, 1000);
 };
 worldobject.prototype.andarAbaixo = function() 
 {
@@ -55,8 +71,9 @@ worldobject.prototype.andarAbaixo = function()
    {
       return "Ei amigo, você esta tentando me levar para o fim do mundo???"
    }
-   this.y ++;
-   $(this.dom).appendTo("div[x="+this.x+"][y="+this.y+"]");
+   this.processing = 1;
+   var _this = this; 
+   setTimeout(function(){ _this.y++; $(_this.dom).appendTo("div[x="+_this.x+"][y="+_this.y+"]");  _this.clearattribs(); }, 1000);
 };
 worldobject.prototype.andarAcima = function() 
 {
@@ -69,10 +86,73 @@ worldobject.prototype.andarAcima = function()
    {
       return "Ei amigo, você esta tentando me levar para o fim do mundo???"
    }
-   this.y --;
-   $(this.dom).appendTo("div[x="+this.x+"][y="+this.y+"]");
+   this.processing = 1;
+   var _this = this; 
+   setTimeout(function(){ _this.y--; $(_this.dom).appendTo("div[x="+_this.x+"][y="+_this.y+"]");  _this.clearattribs(); }, 1000);
 };
-
+worldobject.prototype.getObjeto = function(direction)
+{
+   if(this.processingtype == 1)
+   {
+      return undefined;
+   }
+   var coords = tratadirecao(direction,this);
+   if ( coords == "invalid")
+   {
+      return "Direção invalida, As direções possíveis são : acima, direita, esquerda, abaixo, aquimesmo!";
+   } 
+   for(var i = 0; i<aliens.length; i++)
+   {
+      if ( (aliens[i].x == coords.x) && (aliens[i].y == coords.y))
+      {
+         this.processingtype = (this.processing == 1) ? 1 : 0;
+         return aliens[i].class
+      }
+   }
+   return undefined
+};
+worldobject.prototype.ehVazio = function(direction)
+{
+   if(this.processingtype == 1)
+   {
+      return true;
+   }
+   var coords = tratadirecao(direction,this);
+   if ( coords == "invalid")
+   {
+      return "Direção invalida, As direções possíveis são : acima, direita, esquerda, abaixo, aquimesmo!";
+   } 
+   for(var i = 0; i<aliens.length; i++)
+   {
+      if ( (aliens[i].x == coords.x) && (aliens[i].y == coords.y))
+      {
+         this.processingempty = (this.processing == 1) ? 1 : 0;
+         return false
+      }
+   }
+   return true
+};
+worldobject.prototype.ehObjetoDoMundoTipo = function(classe,direction)
+{
+   if(this.processingtype == 1)
+   {
+      return false;
+   }
+   var coords = tratadirecao(direction,this);
+   if ( coords == "invalid")
+   {
+      return "Direção invalida, As direções possíveis são : acima, direita, esquerda, abaixo, aquimesmo!";
+   } 
+   for(var i = 0; i<aliens.length; i++)
+   {
+      if ( (aliens[i].x == coords.x) && (aliens[i].y == coords.y) && (aliens[i].class == classe) )
+      {
+         this.processingtype = (this.processing == 1) ? 1 : 0;
+         return true;
+      }
+   }
+   return false;
+};
 //get currently object XY
 worldobject.prototype.getXY = function()
 {
@@ -82,10 +162,9 @@ worldobject.prototype.getXY = function()
    }
    var currentcoords = { x: this.x , y: this.y };
    return currentcoords
-}
-
+};
 //check if direction is world end
-worldobject.prototype.ehFim = function(direction,obj)
+worldobject.prototype.ehFim = function(direction)
 {
    if(this.processing == 1)
    {
@@ -102,7 +181,7 @@ worldobject.prototype.ehFim = function(direction,obj)
       isEnd = false; 
    })
    return isEnd
-}
+};
 
 function Furbot(x,y,identifier,htmlelement) {
   worldobject.call(this,x,y,identifier,htmlelement); // call constructor-father
@@ -110,7 +189,7 @@ function Furbot(x,y,identifier,htmlelement) {
 
 function Alien(x,y,identifier,htmlelement) {
   worldobject.call(this,x,y,identifier,htmlelement); // call constructor-father
-}
+};
 // Define prototype for objects, instance they in object chain. defining their constructor will set the attribs and defining their prototype will set the object chain functions
 Furbot.prototype = Object.create(worldobject.prototype);
 Furbot.prototype.constructor = Furbot;
@@ -135,7 +214,7 @@ $( document ).ready(function()
    $('.alien').each( function(i,t)
    {
       domelement = document.getElementById(t.id);
-      aliens[i] = new Alien(domelement.getAttribute('y'),domelement.getAttribute('x'),domelement.className,domelement);
+      aliens[i] = new Alien(domelement.getAttribute('x'),domelement.getAttribute('y'),domelement.className,domelement);
       var context = aliens[i].dom.getContext('2d');    
       base_imagealien = new Image();
       base_imagealien.src = 'imgs/alien.jpg';
@@ -144,6 +223,4 @@ $( document ).ready(function()
         context.drawImage(base_imagealien, 0,0, 250, 250);
       }
    });
-
-
 });
