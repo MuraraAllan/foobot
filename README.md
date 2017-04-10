@@ -1,4 +1,5 @@
- Baseado no Furbot - http://inf.furb.br/poo/ProjetoFurbot/ 
+-----------------PORTUGUES--------------------
+Baseado no Furbot - http://inf.furb.br/poo/ProjetoFurbot/ 
 
 Apresentação :
 " O FURBOT é um ambiente de apoio ao ensino de lógica de programação que foi concebido em 2008-1 por uma equipe de professores do Departamento de Sistemas e Computação da FURB pela equipe de professores: Adilson Vahldick, Mauro Marcelo Mattos e Carlos Henrique Correia com o propósito de disponibilizar a você um ambiente com forte apelo na área de jogos e que possibilitasse o desenvolvimento de algoritmos de controle de personagens de tal forma a criar uma atmosfera facilitadora ao aprendizado.
@@ -14,6 +15,8 @@ customloop(1500, "ehFim('direita')", "if(!ehVazio(aquimesmo)){ console.log('foun
 
 O Código fara o robo andar para direita e caso encontre um alien vai dizer que encontrou, se não encontrar vai informar o x y do mundo. Favor desconsiderar estética, projeto protótipo.
 
+-----------------ENGLISH--------------------
+Based on Furbot - http://inf.furb.br/poo/ProjetoFurbot/ 
 
 
 Presentation:
