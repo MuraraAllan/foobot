@@ -3,12 +3,15 @@
 <link rel="stylesheet" type="text/css" href="css/world.css">
 <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="css/bootstrap-theme.min.css">
-<link rel="stylesheet" type="text/css" href="css/codemirror.css">
 <script src="js/jquery-3.2.0.min.js"></script>
+<<<<<<< HEAD
 <script src="js/multithread.js"></script> 
+=======
+<script src="js/multithread.js"></script>
+>>>>>>> parent of 9e06299... 09/04/2017
 <script src="js/bootstrap.min.js"></script>
-<script src="js/objects_handler.js"></script>
 <script src="js/utils.js"></script>
+<<<<<<< HEAD
 <script src="js/codemirror.js"></script>
 <script src="js/mode_javascript.js"></script>
 <script>
@@ -21,6 +24,11 @@ $( document ).ready(function()
 	 {value: "",lineNumbers: true,lineWrapping: true,mode:  "javascript"});
 })
 </script>
+=======
+<script src="js/world.js"></script>
+<script src="js/foobot.js"></script>
+<script src="js/aliens.js"></script>
+>>>>>>> parent of 9e06299... 09/04/2017
 <head>
    <title>{{title}}</title>
 </head>
@@ -30,12 +38,9 @@ $( document ).ready(function()
       {{this}}
     {{/generateworld}}
 </div>
-<div class="editor" id='editor' style="margin-left:60%; position:absolute; border:1px solid; width:40%; height:50%">
+<input class="console" style="margin-left:60%; position:absolute; border:1px solid; width:40%; height:50%">
+</input>
 
-</div>
-
-
-<button type="button" style='margin-top:500px' class="btn btn-secondary" onclick='run_bot()'>Secondary</button>
 
 </body>
 </html>

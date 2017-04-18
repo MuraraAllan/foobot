@@ -1,4 +1,4 @@
-var express = require('express');
+  var express = require('express');
 var path = require('path');
 var app = express();
 var handlebars = require('handlebars');
@@ -42,7 +42,7 @@ var hbs = exphbs.create(
                ret += "<div style='height :" + (100/obj.world[0].y) + "%; width:" + (100/obj.world[1].x) + "%;' class='tile'" + " x=" +x+" y= "+y+">";
                if ((boty == y) && (botx == x))
                {
-                  ret+= "<canvas id='foobot' class='foobot'" + " x=" +x+" y= "+y+" style='width:90%; height:90%';>" + boty + "a" +botx+" </canvas>";
+                  ret+= "<canvas id='foobot' class='foobot' style='width:90%; height:90%';>" + boty + "a" +botx+" </canvas>";
                }
                if ( aliens_pos.length > 0 )
                {

@@ -1,8 +1,8 @@
-function tratadirecao(direcao,obj)
+function tratadirecao(direcao)
 {
 	if ( direcao == 'acima' || direcao == 'esquerda' || direcao == 'direita' || direcao == 'abaixo' || direcao == 'aquimesmo')
     {
-	   var coords = obj.getXY();
+	   var coords = getXY(foobot);
 	   switch(direcao)
 	   {
 	      case 'acima': coords.y --; break;
@@ -11,9 +11,20 @@ function tratadirecao(direcao,obj)
 	      case 'esquerda': coords.x --; break;
 	      case 'aquimesmo': break;
 	   }
+<<<<<<< HEAD
        return coords;
     }
     return "invalid";
+=======
+	   if(ehFim(coords))
+	   {
+ 	      return "ehfim"
+	   }
+       return coords;
+    }
+
+    return "direcaoinvalida";
+>>>>>>> parent of 9e06299... 09/04/2017
 }
 
 function getXY(obj)
@@ -21,10 +32,12 @@ function getXY(obj)
 	var currentcoords = {x: $(obj).parent().attr('x'), y : $(obj).parent().attr('y') };
 	return currentcoords;
 }
+
 function sleep(ms,caller)
 {
 	window.setTimeout(function(){ oie('testes') }, ms);
 }
+<<<<<<< HEAD
 //
 function run_bot()
 {
@@ -67,4 +80,10 @@ function ehVazio(direction)
 function ehObjetoDoMundoTipo(classe,direction)
 {
    return furbot.ehObjetoDoMundoTipo(classe,direction);
+=======
+
+function threadexterna(executa)
+{
+	
+>>>>>>> parent of 9e06299... 09/04/2017
 }
