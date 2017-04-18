@@ -18,7 +18,6 @@ function tratadirecao(direcao,obj)
 
 function getXY(obj)
 {
-	var currentcoords = {x: $(obj).parent().attr('x'), y : $(obj).parent().attr('y') };
 	return furbot.getXY();
 }
 function sleep(ms,caller)
@@ -28,7 +27,12 @@ function sleep(ms,caller)
 //
 function run_bot()
 {
-    console.log(eval(texteditor.getValue()))
+    if ( blocked == true)
+    {
+       alert('execução rodando ainda.');
+       return;
+    }
+    eval(texteditor.getValue());
 }
 
 function ehFim(direcao)
@@ -65,7 +69,6 @@ function ehObjetoDoMundoTipo(classe,direction)
 }
 function customloop(ms, conditional, execution)
 {
-
    if( ms  > 0 )
    {
       setTimeout(function()
@@ -81,5 +84,30 @@ function customloop(ms, conditional, execution)
          }
        }, ms);
    }
-
+}
+function walk_bot(caller)
+{
+  if((blocked == true) && (caller != "callback"))
+  {
+    return;
+  }
+  setTimeout(function()
+  { 
+     switch(moves_pool[0])
+     {
+        case 'acima': $("#foobot").attr('y',parseInt($("#foobot").attr('y')) -1); break;
+        case 'abaixo': $("#foobot").attr('y',parseInt($("#foobot").attr('y')) +1); break;
+        case 'direita': $("#foobot").attr('x',parseInt($("#foobot").attr('x')) +1); break;
+        case 'esquerda':  $("#foobot").attr('x',parseInt($("#foobot").attr('x')) -1); break;
+        case 'aquimesmo': break;
+     }
+     $("#foobot").appendTo("div[x="+$("#foobot").attr('x')+"][y="+$("#foobot").attr('y')+"]");  
+     moves_pool.shift();
+     if(moves_pool.length == 0)
+     {
+        blocked = false;
+        return;
+     }
+     walk_bot('callback');
+  }, 2000) ;
 }

@@ -10,7 +10,6 @@
 <script src="js/objects_handler.js"></script>
 <script src="js/utils.js"></script>
 <script src="js/codemirror.js"></script>
-<script src="js/mode_javascript.js"></script>
 <script>
 //create CodeMirror (div with texteditor id) to handle the code user is working in.
 var texteditor;
@@ -24,7 +23,7 @@ $( document ).ready(function()
    <title>{{title}}</title>
 </head>
 <body>
-<div class="Map" style='position:absolute; width:60%; height:50%; border:1px solid;'>
+
 {{#generateworld this}}
       {{this}}
     {{/generateworld}}
