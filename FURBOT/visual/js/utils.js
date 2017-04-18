@@ -1,8 +1,8 @@
-function tratadirecao(direcao)
+function tratadirecao(direcao,obj)
 {
 	if ( direcao == 'acima' || direcao == 'esquerda' || direcao == 'direita' || direcao == 'abaixo' || direcao == 'aquimesmo')
     {
-	   var coords = getXY(foobot);
+	   var coords = obj.getXY();
 	   switch(direcao)
 	   {
 	      case 'acima': coords.y --; break;
@@ -11,42 +11,24 @@ function tratadirecao(direcao)
 	      case 'esquerda': coords.x --; break;
 	      case 'aquimesmo': break;
 	   }
-<<<<<<< HEAD
        return coords;
     }
     return "invalid";
-=======
-	   if(ehFim(coords))
-	   {
- 	      return "ehfim"
-	   }
-       return coords;
-    }
-
-    return "direcaoinvalida";
->>>>>>> parent of 9e06299... 09/04/2017
 }
 
 function getXY(obj)
 {
 	var currentcoords = {x: $(obj).parent().attr('x'), y : $(obj).parent().attr('y') };
-	return currentcoords;
+	return furbot.getXY();
 }
-
 function sleep(ms,caller)
 {
 	window.setTimeout(function(){ oie('testes') }, ms);
 }
-<<<<<<< HEAD
 //
 function run_bot()
 {
-   eval(texteditor.getValue())
-
-// Nothing has happened,
-//funcInADifferentThread has not executed yet...
-
-funcInADifferentThread(texteditor.getValue());
+    console.log(eval(texteditor.getValue()))
 }
 
 function ehFim(direcao)
@@ -80,10 +62,24 @@ function ehVazio(direction)
 function ehObjetoDoMundoTipo(classe,direction)
 {
    return furbot.ehObjetoDoMundoTipo(classe,direction);
-=======
-
-function threadexterna(executa)
+}
+function customloop(ms, conditional, execution)
 {
-	
->>>>>>> parent of 9e06299... 09/04/2017
+
+   if( ms  > 0 )
+   {
+      setTimeout(function()
+      { 
+         if(eval(conditional) == true)
+         {
+            ms = 0;
+         }
+         eval(execution)
+         if ( ms > 0 )
+         {
+            customloop(ms,conditional,execution);
+         }
+       }, ms);
+   }
+
 }
