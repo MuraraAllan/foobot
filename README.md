@@ -13,14 +13,14 @@ Na parte da direita onde aparece o número 1 ( no editor de código ), você col
 Em caso de erro de código o retorno sai pelo console do seu navegador. 
 
 var direcao = abaixo; //substituir com a direção desejada, quanto mais longe mais loops =)
-while(!ehFim(direcao))
-{
-   if(!ehVazio(aquimesmo))
-   {
-      alert("Encontrei Objeto no caminho proposto");
-   }
-   andar(direcao);
-}
+while(!ehFim(direcao))<br>
+{<br>
+   if(!ehVazio(aquimesmo))<br>
+   {<br>
+      alert("Encontrei Objeto no caminho proposto");<br>
+   }<br>
+   andar(direcao);<br>
+}<br>
 
 -----------------ENGLISH-------------------- OUTDATED 19/04
 Based on Furbot - http://inf.furb.br/poo/ProjetoFurbot/ 
