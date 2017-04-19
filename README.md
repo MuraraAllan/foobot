@@ -13,7 +13,7 @@ Na parte da direita onde aparece o número 1 ( no editor de código ), você col
 Em caso de erro de código o retorno sai pelo console do seu navegador. 
 
 var direcao = abaixo; //substituir com a direção desejada, quanto mais longe mais loops =)
-while(!ehFim(direcao))<br>
+<br>while(!ehFim(direcao))<br>
 {<br>
    if(!ehVazio(aquimesmo))<br>
    {<br>
