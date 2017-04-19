@@ -154,19 +154,31 @@ worldobject.prototype.ehFim = function(direction)
 function Furbot(x,y,identifier,htmlelement) {
   worldobject.call(this,x,y,identifier,htmlelement); // call constructor-father
 }
-
 function Alien(x,y,identifier,htmlelement) {
   worldobject.call(this,x,y,identifier,htmlelement); // call constructor-father
 };
+function Dino(x,y,identifier,htmlelement) {
+  worldobject.call(this,x,y,identifier,htmlelement); // call constructor-father
+};
+function Wall(x,y,identifier,htmlelement) {
+  worldobject.call(this,x,y,identifier,htmlelement); // call constructor-father
+};
+
 // Define prototype for objects, instance they in object chain. defining their constructor will set the attribs and defining their prototype will set the object chain functions
 Furbot.prototype = Object.create(worldobject.prototype);
 Furbot.prototype.constructor = Furbot;
 Alien.prototype = Object.create(worldobject.prototype);
 Alien.prototype.constructor = Alien;
+Dino.prototype = Object.create(worldobject.prototype);
+Dino.prototype.constructor = Dino;
+Wall.prototype = Object.create(worldobject.prototype);
+Wall.prototype.constructor = Wall;
 Map.prototype = Object.create(Map.prototype);
 //define map handler
 
 var aliens = [];
+var dinos = [];
+var walls =[];
 var furbot;
 var blocked = false;
 var map;
@@ -196,6 +208,30 @@ $( document ).ready(function()
       base_imagealien.onload = function()
       {
         context.drawImage(base_imagealien, 0,0, 250, 250);
+      }
+   });
+   $('.dino').each( function(i,t)
+   {
+      domelement = document.getElementById(t.id);
+      dinos[i] = new Dino(domelement.getAttribute('x'),domelement.getAttribute('y'),domelement.className,domelement);
+      var context = dinos[i].dom.getContext('2d');    
+      base_imagedino = new Image();
+      base_imagedino.src = 'imgs/dino.jpg';
+      base_imagedino.onload = function()
+      {
+        context.drawImage(base_imagedino, 0,0, 250, 250);
+      }
+   });
+   $('.wall').each( function(i,t)
+   {
+      domelement = document.getElementById(t.id);
+      walls[i] = new Dino(domelement.getAttribute('x'),domelement.getAttribute('y'),domelement.className,domelement);
+      var context = walls[i].dom.getContext('2d');    
+      base_imagewall = new Image();
+      base_imagewall.src = 'imgs/wall.jpg';
+      base_imagewall.onload = function()
+      {
+        context.drawImage(base_imagewall, 0,0, 250, 250);
       }
    });
 });
