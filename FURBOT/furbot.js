@@ -36,7 +36,6 @@ var hbs = exphbs.create(
                  objects.push({type: t[3].type, x : objectx, y: objecty });
               }
            });
-     
            //y > b -1 y> y 1
            objects.sort(function (a, b) 
            {
@@ -91,7 +90,7 @@ app.get('/', function(req, res)
    res.render('tabuleiro', 
    {
       title:"FOOBOT MONSTRO",
-      world: [ {y: (Math.round(Math.random()*(4)) + 6).toString()}  , { x: (Math.round(Math.random()*(4)) + 5).toString()} ],
+      world: [ {y: (Math.round(Math.random()*(5)) + 6).toString()}  , { x: (Math.round(Math.random()*(4)) + 5).toString()} ],
       robot: [ { y: "random"} , { x: "random" } ],
       worldobjects: [[{qtd:"5"}, { y:"random"} , {x: "random"},{type:'Dino'}],[{qtd:"4"}, { y:"random"} , {x: "random"},{type: 'Alien'}],[{qtd:"3"}, { y:"random"} , {x: "random"},{type: 'Wall'}]]
    })

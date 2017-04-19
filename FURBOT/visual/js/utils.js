@@ -1,7 +1,6 @@
 function tratadirecao(direcao,obj)
 {
-	if ( direcao == 'acima' || direcao == 'esquerda' || direcao == 'direita' || direcao == 'abaixo' || direcao == 'aquimesmo')
-    {
+
 	   var coords = obj.getXY();
 	   switch(direcao)
 	   {
@@ -10,10 +9,11 @@ function tratadirecao(direcao,obj)
 	      case 'direita': coords.x ++; break;
 	      case 'esquerda': coords.x --; break;
 	      case 'aquimesmo': break;
+        case "default" : return "invalid";
 	   }
-       return coords;
-    }
-    return "invalid";
+     return coords;
+  
+ 
 }
 
 function getXY(obj)
@@ -33,6 +33,19 @@ function run_bot()
        return;
     }
     eval(texteditor.getValue());
+}
+
+function andar(direcao)
+{
+    switch(direcao)
+    {
+       case 'acima': andarAcima(); break;
+       case 'abaixo': andarAbaixo(); break;
+       case 'direita': andarDireita(); break;
+       case 'esquerda': andarEsquerda(); break;
+       case 'aquimesmo': break;
+       case "default" : return "invalid";
+    }
 }
 
 function ehFim(direcao)

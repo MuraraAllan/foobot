@@ -96,11 +96,11 @@ worldobject.prototype.getObjeto = function(direction)
    {
       return "Direção invalida, As direções possíveis são : acima, direita, esquerda, abaixo, aquimesmo!";
    } 
-   for(var i = 0; i<aliens.length; i++)
+   for(var i = 0; i<objects.length; i++)
    {
-      if ( (aliens[i].x == coords.x) && (aliens[i].y == coords.y))
+      if ( (objects[i].x == coords.x) && (objects[i].y == coords.y))
       {
-         return aliens[i].class
+         return objects[i].class
       }
    }
    return undefined
@@ -112,9 +112,9 @@ worldobject.prototype.ehVazio = function(direction)
    {
       return "Direção invalida, As direções possíveis são : acima, direita, esquerda, abaixo, aquimesmo!";
    } 
-   for(var i = 0; i<aliens.length; i++)
+   for(var i = 0; i<objects.length; i++)
    {
-      if ( (aliens[i].x == coords.x) && (aliens[i].y == coords.y))
+      if ( (objects[i].x == coords.x) && (objects[i].y == coords.y))
       {
          return false
       }
@@ -128,9 +128,9 @@ worldobject.prototype.ehObjetoDoMundoTipo = function(classe,direction)
    {
       return "Direção invalida, As direções possíveis são : acima, direita, esquerda, abaixo, aquimesmo!";
    } 
-   for(var i = 0; i<aliens.length; i++)
+   for(var i = 0; i<objects.length; i++)
    {
-      if ( (aliens[i].x == coords.x) && (aliens[i].y == coords.y) && (aliens[i].class == classe) )
+      if ( (objects[i].x == coords.x) && (objects[i].y == coords.y) && (objects[i].class == classe) )
       {
          return true;
       }
@@ -175,7 +175,7 @@ Wall.prototype = Object.create(worldobject.prototype);
 Wall.prototype.constructor = Wall;
 Map.prototype = Object.create(Map.prototype);
 //define map handler
-
+var objects = [];
 var aliens = [];
 var dinos = [];
 var walls =[];
@@ -203,6 +203,7 @@ $( document ).ready(function()
       domelement = document.getElementById(t.id);
       aliens[i] = new Alien(domelement.getAttribute('x'),domelement.getAttribute('y'),domelement.className,domelement);
       var context = aliens[i].dom.getContext('2d');    
+      objects.push(aliens[i])
       base_imagealien = new Image();
       base_imagealien.src = 'imgs/alien.jpg';
       base_imagealien.onload = function()
@@ -215,6 +216,7 @@ $( document ).ready(function()
       domelement = document.getElementById(t.id);
       dinos[i] = new Dino(domelement.getAttribute('x'),domelement.getAttribute('y'),domelement.className,domelement);
       var context = dinos[i].dom.getContext('2d');    
+      objects.push(dinos[i]);
       base_imagedino = new Image();
       base_imagedino.src = 'imgs/dino.jpg';
       base_imagedino.onload = function()
@@ -222,10 +224,12 @@ $( document ).ready(function()
         context.drawImage(base_imagedino, 0,0, 250, 250);
       }
    });
+   objects.push(dinos);
    $('.wall').each( function(i,t)
    {
       domelement = document.getElementById(t.id);
       walls[i] = new Dino(domelement.getAttribute('x'),domelement.getAttribute('y'),domelement.className,domelement);
+      objects.push(walls[i]);
       var context = walls[i].dom.getContext('2d');    
       base_imagewall = new Image();
       base_imagewall.src = 'imgs/wall.jpg';
