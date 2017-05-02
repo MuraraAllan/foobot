@@ -17,7 +17,7 @@ var direcao = abaixo; //substituir com a direção desejada, quanto mais longe m
 {<br>
    if(!ehVazio(aquimesmo))<br>
    {<br>
-     qt_objects++;
+     qt_objects++;<br>
    }<br>
    andar(direcao);<br>
 }<br>
