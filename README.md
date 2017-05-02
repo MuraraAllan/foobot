@@ -11,17 +11,17 @@ Desenvolvido orientado a objeto utilizando Node.JS + Handlebars.js + Express.js.
 O Projeto esta rodando em : http://54.186.0.107:3000/
 Na parte da direita onde aparece o número 1 ( no editor de código ), você coloca os códigos e após clica em "Executar Código".
 Em caso de erro de código o retorno sai pelo console do seu navegador. 
-
+var qt_objects = 0;
 var direcao = abaixo; //substituir com a direção desejada, quanto mais longe mais loops =)
 <br>while(!ehFim(direcao))<br>
 {<br>
    if(!ehVazio(aquimesmo))<br>
    {<br>
-      alert("Encontrei Objeto no caminho proposto");<br>
+     qt_objects++;
    }<br>
    andar(direcao);<br>
 }<br>
-
+Diga(qt_objects);
 -----------------ENGLISH-------------------- OUTDATED 19/04
 Based on Furbot - http://inf.furb.br/poo/ProjetoFurbot/ 
 
