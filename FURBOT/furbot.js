@@ -92,7 +92,7 @@ app.get('/', function(req, res)
       title:"FOOBOT MONSTRO",
       world: [ {y: (Math.round(Math.random()*(5)) + 6).toString()}  , { x: (Math.round(Math.random()*(4)) + 5).toString()} ],
       robot: [ { y: "random"} , { x: "random" } ],
-      worldobjects: [[{qtd:"5"}, { y:"random"} , {x: "random"},{type:'Dino'}],[{qtd:"4"}, { y:"random"} , {x: "random"},{type: 'Alien'}],[{qtd:"3"}, { y:"random"} , {x: "random"},{type: 'Wall'}]]
+      worldobjects: [[{qtd:"2"}, { y:"random"} , {x: "random"},{type:'Dino'}],[{qtd:"4"}, { y:"random"} , {x: "random"},{type: 'Alien'}],[{qtd:"3"}, { y:"random"} , {x: "random"},{type: 'Wall'}]]
    })
 });
 
