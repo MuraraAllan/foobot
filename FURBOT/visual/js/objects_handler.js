@@ -7,7 +7,6 @@ const aquimesmo = 'aquimesmo';
 const alien = 'alien';
 var num_threads = 5;
 
-//instance world object, the mandatory function for object chain. The heritance will occur from this
 function Map(x,y)
 {
    this.maxx = x;
@@ -20,8 +19,10 @@ Map.prototype.ehFim = function(x,y)
    isEnd = (this.maxy - 1 < y || isEnd == true) ? true : false;
    isEnd = (x < 0 || isEnd == true) ? true : false;
    isEnd = (y<0 || isEnd == true) ? true : false;
-   return isEnd
+   return isEnd;
 }
+
+//instance world object, the mandatory function for object chain. heritance will occur from this
 function worldobject(x,y,identifier,htmlelement)
 {
    this.x = x;
@@ -33,6 +34,13 @@ function worldobject(x,y,identifier,htmlelement)
    this.processingempty = 0;
    this.processingtype = 0;
 };
+worldobject.prototype.Diga = function(texto)
+{
+  $("#"+this.dom.id).popover("destroy");   
+  moves_pool.push(["diga",texto, this]);
+  setTimeout(function(){ action_handler(); } , 200 );
+  return;
+}
 worldobject.prototype.andarDireita = function() 
 { 
    var isEnd = this.ehFim('direita');
@@ -43,7 +51,7 @@ worldobject.prototype.andarDireita = function()
    this.x++;
    // 
    moves_pool.push("direita");
-   walk_bot();
+   action_handler();
    blocked=true;
    return;
 };
@@ -56,7 +64,7 @@ worldobject.prototype.andarEsquerda = function()
    }
    //$(this.dom).appendTo("div[x="+_this.x+"][y="+_this.y+"]");  
    moves_pool.push("esquerda");
-   walk_bot();
+   action_handler();
    blocked = true;
    this.x --;
    return;
@@ -70,10 +78,9 @@ worldobject.prototype.andarAbaixo = function()
    }
    this.y++;
    moves_pool.push("abaixo");
-   walk_bot();
+   action_handler();
    blocked = true;
    return;
-   //$(this.dom).appendTo("div[x="+_this.x+"][y="+_this.y+"]");
 };
 worldobject.prototype.andarAcima = function() 
 {
@@ -83,9 +90,9 @@ worldobject.prototype.andarAcima = function()
       return "Ei amigo, você esta tentando me levar para o fim do mundo???"
    }
    this.y--;
-   walk_bot();
-   blocked = true;
    moves_pool.push("acima");
+   action_handler();
+   blocked = true;
    return;
    //$(this.dom).appendTo("div[x="+_this.x+"][y="+_this.y+"]"); 
 };
@@ -186,7 +193,6 @@ var moves_pool = [];
 //when document loaded, create the objects using the object chain
 $( document ).ready(function() 
 {
-   console.log($(".Map").css('position'))
    map = new Map($(".Map").attr('maxx'), $(".Map").attr('maxy'));
    //declaring single object called Furbot 
    var domelement = document.getElementById('foobot'), context = domelement.getContext('2d');    
@@ -199,7 +205,7 @@ $( document ).ready(function()
    }
    //iterate over all dom elements called .allien ( server heritance ) and create a array of objects called aliens 
    $('.alien').each( function(i,t)
-   {
+   {  
       domelement = document.getElementById(t.id);
       aliens[i] = new Alien(domelement.getAttribute('x'),domelement.getAttribute('y'),domelement.className,domelement);
       var context = aliens[i].dom.getContext('2d');    

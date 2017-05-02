@@ -55,13 +55,13 @@ var hbs = exphbs.create(
                  //create robot if in right x y
                  if ((boty == y) && (botx == x))
                  { 
-                    ret+= "<canvas id='foobot' class='foobot'" + " x=" +x+" y= "+y+" style='width:90%; height:90%';>" + boty + "a" +botx+" </canvas>";
+                    ret+= "<canvas id='foobot' class='foobot'" + " x=" +x+" y= "+y+" style='width:100%; height:50%';>" + boty + "a" +botx+" </canvas>";
                  }
                  objects.forEach(function(t, i)
                  { 
                     if((t.y == y) && (t.x == x))
                     {
-                       ret+= "<canvas id='" + t.type.toLowerCase()+ "" + i + "' class='" + t.type.toLowerCase() +"' " + " x=" +x+" y= "+y+" style='width:90%; height:90%';>" + t.y  + "a" + t.x +" </canvas>";
+                       ret+= "<canvas id='" + t.type.toLowerCase()+ "" + i + "' class='" + t.type.toLowerCase() +"' " + " x=" +x+" y= "+y+" style='width:100%; height:50%';>" + t.y  + "a" + t.x +" </canvas>";
                     }
                  });
                  ret+= "</div>";
