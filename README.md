@@ -25,7 +25,7 @@ if(!ehVazio(aquimesmo))<br>
 {<br>
 qt_objects++;<br>
 }<br>
-Diga(qt_objects);<br>
+Diga('Encontrei : ' + qt_objects);<br>
 -----------------ENGLISH-------------------- OUTDATED 19/04
 Based on Furbot - http://inf.furb.br/poo/ProjetoFurbot/ 
 
